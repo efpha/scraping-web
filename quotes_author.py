@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
+import csv
 
 url = 'https://quotes.toscrape.com/'
 headers = {
@@ -12,5 +13,11 @@ soup = BeautifulSoup(page.content, 'html.parser')
 quotes = soup.findAll(class_ = "text")
 authors = soup.findAll(class_ = "author")
 
+f = open('scraped_quotes.csv', 'wt')
+writer = csv.writer(f)
+writer.writerow(["Quotes", "Authors"])
+
 for quote, author in zip(quotes, authors):
-    print(f'{quote.text + " by " + author.text}')
+    print(f'{quote.text + " , " + author.text}')
+    writer.writerow([quote.text, author.text])
+f.close()
