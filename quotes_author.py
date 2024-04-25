@@ -13,7 +13,7 @@ soup = BeautifulSoup(page.content, 'html.parser')
 quotes = soup.findAll(class_ = "text")
 authors = soup.findAll(class_ = "author")
 
-# creating file and writing into it
+# create file and writing into it
 f = open('scraped_quotes.csv', 'wt')
 writer = csv.writer(f)
 writer.writerow(["Quotes", "Authors"])
